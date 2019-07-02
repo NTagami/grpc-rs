@@ -69,6 +69,10 @@ fn build_grpc(cc: &mut Build, library: &str) {
 
     let dst = {
         let mut config = Config::new("grpc");
+
+	// set for msvc
+	config.static_crt(true);
+
         if !cfg!(feature = "secure") {
             // boringssl's configuration is still included, but targets
             // will never be built, hence specify a fake go to get rid of
